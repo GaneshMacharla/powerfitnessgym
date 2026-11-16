@@ -17,7 +17,8 @@ const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
 if (navToggle && navLinks) {
-  navToggle.addEventListener('click', () => {
+  navToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     navToggle.classList.toggle('active');
     navLinks.classList.toggle('active');
   });
@@ -28,6 +29,14 @@ if (navToggle && navLinks) {
       navToggle.classList.remove('active');
       navLinks.classList.remove('active');
     });
+  });
+
+  // Close menu when tapping outside on mobile
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+    }
   });
 }
 
