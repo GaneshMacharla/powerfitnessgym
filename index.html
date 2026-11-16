@@ -878,13 +878,36 @@
     </div>
   </footer>
 
-  <!-- ============================== FLOATING ACTIONS (BOTTOM-RIGHT CLUSTER) ============================== -->
-  <div class="floating-action-cluster">
-    <button class="fab-top" aria-label="Back to top">↑</button>
-    <a href="https://wa.me/919440687315?text=Hi%20Power%20Fitness%20Gym%2C%20I%20am%20interested%20in%20joining." class="fab-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
-      <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.772.84 2.791.84 3.18 0 5.766-2.587 5.767-5.766.001-3.18-2.585-5.826-5.767-5.826zm9.849 5.766c-.001 5.416-4.409 9.823-9.849 9.823-1.725 0-3.344-.452-4.757-1.242l-5.274 1.381 1.407-5.139c-.87-1.464-1.376-3.176-1.376-4.823 0-5.417 4.408-9.824 9.849-9.824 5.417 0 9.85 4.407 9.85 9.824z"/></svg>
-      <span class="fab-text">Chat on WhatsApp</span>
+  <!-- ============================== REAL WHATSAPP FLOATING WIDGET ============================== -->
+  <div class="whatsapp-floating-widget">
+    <!-- Real WhatsApp Floating Button -->
+    <a href="https://wa.me/919440687315?text=Hi%20Power%20Fitness%20Gym!%20I%20want%20to%20know%20more%20about%20memberships%20and%20festival%20offers." 
+       class="whatsapp-btn" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Chat with Power Fitness Gym on WhatsApp">
+      
+      <!-- Desktop Tooltip Bubble -->
+      <span class="whatsapp-tooltip">
+        <span class="online-indicator"></span>
+        Chat on WhatsApp
+      </span>
+
+      <!-- Notification Badge -->
+      <span class="whatsapp-badge">1</span>
+
+      <!-- Official WhatsApp SVG Icon -->
+      <svg class="whatsapp-icon" viewBox="0 0 32 32">
+        <path d="M16 2.5C8.544 2.5 2.5 8.544 2.5 16c0 2.658.767 5.143 2.094 7.237L3 29.5l6.475-1.554A13.435 13.435 0 0 0 16 29.5c7.456 0 13.5-6.044 13.5-13.5S23.456 2.5 16 2.5zm0 24.625c-2.31 0-4.475-.688-6.3-1.875l-.45-.292-4.184 1 1.03-4.04-.3-.473A11.085 11.085 0 0 1 4.875 16c0-6.134 4.991-11.125 11.125-11.125 6.134 0 11.125 4.991 11.125 11.125 0 6.134-4.991 11.125-11.125 11.125zm6.15-8.288c-.337-.169-1.996-.985-2.305-1.098-.31-.112-.535-.169-.76.169-.226.338-.874 1.098-1.072 1.323-.197.225-.394.253-.731.084-.338-.169-1.424-.525-2.713-1.674-.999-.89-1.674-1.99-1.87-2.328-.198-.338-.021-.52.148-.689.152-.152.338-.394.507-.591.169-.197.225-.338.338-.563.112-.225.056-.422-.028-.591-.085-.169-.76-1.831-1.042-2.507-.275-.658-.553-.568-.76-.578-.197-.01-.422-.01-.647-.01-.225 0-.591.084-.9.422-.31.338-1.182 1.155-1.182 2.817 0 1.662 1.21 3.267 1.38 3.493.169.225 2.38 3.634 5.767 5.099.805.348 1.434.556 1.924.712.809.257 1.545.221 2.127.134.649-.097 1.996-.816 2.278-1.604.282-.788.282-1.464.197-1.605-.084-.141-.31-.225-.647-.394z"/>
+      </svg>
     </a>
+
+    <!-- Back to top button positioned directly above WhatsApp -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
   </div>
 
   <!-- JavaScript -->

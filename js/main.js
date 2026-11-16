@@ -51,17 +51,17 @@ window.addEventListener('scroll', () => {
 });
 
 // 4. Back to Top Button
-const fabTop = document.querySelector('.fab-top');
-if (fabTop) {
+const backToTopBtn = document.getElementById('backToTop') || document.querySelector('.back-to-top') || document.querySelector('.fab-top');
+if (backToTopBtn) {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 350) {
-      fabTop.classList.add('show');
+      backToTopBtn.classList.add('show');
     } else {
-      fabTop.classList.remove('show');
+      backToTopBtn.classList.remove('show');
     }
   });
 
-  fabTop.addEventListener('click', () => {
+  backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
