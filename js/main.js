@@ -1,4 +1,6 @@
-// ===== Header Scroll Effect =====
+// ===== Power Fitness Gym — Interactive JavaScript =====
+
+// 1. Header Sticky Scroll Effect
 const siteHeader = document.querySelector('.site-header');
 window.addEventListener('scroll', () => {
   if (siteHeader) {
@@ -10,30 +12,30 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ===== Mobile Menu Toggle =====
-const hamburger = document.querySelector('.hamburger');
+// 2. Mobile Menu Toggle
+const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-if (hamburger && navLinks) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
     navLinks.classList.toggle('active');
   });
 
   // Close menu when clicking a link
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
+      navToggle.classList.remove('active');
       navLinks.classList.remove('active');
     });
   });
 }
 
-// ===== Active Nav Link on Scroll =====
-const sections = document.querySelectorAll('section[id]');
+// 3. Active Nav Link on Scroll
+const trackedSections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
   const scrollY = window.pageYOffset;
-  sections.forEach(section => {
+  trackedSections.forEach(section => {
     const sectionTop = section.offsetTop - 120;
     const sectionHeight = section.offsetHeight;
     const sectionId = section.getAttribute('id');
@@ -48,46 +50,29 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ===== Back to Top Button =====
-const backToTopBtn = document.querySelector('.back-to-top-btn');
-if (backToTopBtn) {
+// 4. Back to Top Button
+const fabTop = document.querySelector('.fab-top');
+if (fabTop) {
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      backToTopBtn.classList.add('show');
+    if (window.scrollY > 350) {
+      fabTop.classList.add('show');
     } else {
-      backToTopBtn.classList.remove('show');
+      fabTop.classList.remove('show');
     }
   });
 
-  backToTopBtn.addEventListener('click', () => {
+  fabTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
-// ===== Scroll Animations =====
-const fadeElements = document.querySelectorAll('.fade-in');
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -40px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, observerOptions);
-
-fadeElements.forEach(el => observer.observe(el));
-
-// ===== Counter Animation =====
+// 5. Stat Counter Animation
 function animateCounters() {
-  const counters = document.querySelectorAll('.stat-number');
+  const counters = document.querySelectorAll('.stat-num');
   counters.forEach(counter => {
     const target = parseFloat(counter.getAttribute('data-count'));
     const suffix = counter.getAttribute('data-suffix') || '';
-    const duration = 2000;
+    const duration = 1800;
     const isDecimal = String(target).includes('.');
     const step = target / (duration / 16);
     let current = 0;
@@ -115,19 +100,19 @@ if (heroSection) {
         heroObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.2 });
 
   heroObserver.observe(heroSection);
 }
 
-// ===== Contact Form Handling & WhatsApp Redirect =====
+// 6. Contact Form Handling & WhatsApp Redirect
 const contactForm = document.querySelector('.contact-form');
-const formStatus = document.querySelector('.form-status');
+const formNotification = document.querySelector('.form-notification');
 
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
 
@@ -145,37 +130,21 @@ if (contactForm) {
       waText += ` I am interested in: ${interest}.`;
     }
     if (message) {
-      waText += ` Note: ${message}`;
+      waText += ` Questions: ${message}`;
     }
 
     const waUrl = `https://wa.me/919440687315?text=${encodeURIComponent(waText)}`;
 
-    setTimeout(() => {
-      if (formStatus) {
-        formStatus.textContent = 'Opening WhatsApp with your enquiry details...';
-        formStatus.className = 'form-status success';
-      }
-      window.open(waUrl, '_blank');
-      contactForm.reset();
+    if (formNotification) {
+      formNotification.className = 'form-notification success';
+      formNotification.innerHTML = '✓ Redirecting to WhatsApp chat with Gym Desk...';
+    }
 
-      setTimeout(() => {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-      }, 2500);
-    }, 600);
+    setTimeout(() => {
+      window.open(waUrl, '_blank');
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+      contactForm.reset();
+    }, 800);
   });
 }
-
-// ===== Smooth Scroll for anchor links =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const targetId = this.getAttribute('href');
-    if (targetId && targetId !== '#') {
-      const target = document.querySelector(targetId);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-  });
-});
