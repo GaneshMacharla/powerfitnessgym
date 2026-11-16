@@ -658,7 +658,7 @@ section {
   font-size: 1.2rem;
 }
 
-/* ===== Festival Offers & Pricing Section ===== */
+/* ===== Festival Offers Section (No Prices, Only Offers & Benefits) ===== */
 #offers {
   background: var(--darker);
   position: relative;
@@ -693,66 +693,19 @@ section {
   margin-top: 4px;
 }
 
-/* Category Tabs */
-.pricing-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 36px;
-  flex-wrap: wrap;
-}
-
-.tab-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--gray);
-  padding: 12px 24px;
-  border-radius: 50px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.tab-btn:hover {
-  border-color: var(--primary);
-  color: #fff;
-}
-
-.tab-btn.active {
-  background: var(--gradient-primary);
-  color: #fff;
-  border-color: var(--primary);
-  box-shadow: 0 4px 18px rgba(255, 77, 0, 0.4);
-}
-
-.tab-btn.active.festive-tab {
-  background: var(--gradient-festive);
-  border-color: #ff0055;
-  box-shadow: 0 4px 20px rgba(255, 0, 85, 0.45);
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
 /* Offer Cards Grid */
 .offers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
   margin-bottom: 40px;
 }
 
 .offer-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 20px;
-  padding: 34px 26px;
+  border-radius: 22px;
+  padding: 36px 28px;
   text-align: left;
   transition: var(--transition);
   position: relative;
@@ -773,16 +726,16 @@ section {
 }
 
 .offer-card.bumper::before {
-  content: '🔥 FESTIVAL BUMPER OFFER';
+  content: '🔥 FESTIVAL SPECIAL OFFER';
   position: absolute;
   top: -1px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--gradient-festive);
   color: white;
-  padding: 5px 20px;
+  padding: 5px 22px;
   border-radius: 0 0 10px 10px;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 1px;
   white-space: nowrap;
@@ -793,47 +746,53 @@ section {
   background: linear-gradient(180deg, rgba(255, 0, 119, 0.08) 0%, var(--card-bg) 100%);
 }
 
-.offer-highlight-badge {
+.offer-deal-badge {
   display: inline-block;
-  background: rgba(255, 77, 0, 0.15);
-  color: var(--primary);
-  padding: 4px 12px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  width: fit-content;
-}
-
-.offer-highlight-badge.free-tag {
   background: rgba(37, 211, 102, 0.18);
   color: #25D366;
   border: 1px solid rgba(37, 211, 102, 0.4);
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  width: fit-content;
+}
+
+.offer-deal-badge.popular {
+  background: rgba(255, 183, 3, 0.2);
+  color: var(--gold);
+  border-color: rgba(255, 183, 3, 0.5);
 }
 
 .offer-card h3 {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-.offer-price-block {
-  margin: 16px 0;
-  padding: 14px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+.offer-highlight-banner {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 18px 0;
+  text-align: center;
 }
 
-.offer-price-block .total-price {
-  font-size: 2.5rem;
+.offer-highlight-banner .main-offer-text {
+  font-size: 1.45rem;
   font-weight: 900;
-  color: #fff;
-  line-height: 1;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
 }
 
-.offer-price-block .effective-rate {
-  font-size: 0.95rem;
+.offer-highlight-banner .validity-tag {
+  font-size: 0.9rem;
   color: var(--gold);
   font-weight: 700;
   margin-top: 6px;
@@ -842,16 +801,16 @@ section {
 .offer-perks {
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  font-size: 0.92rem;
+  gap: 10px;
+  font-size: 0.94rem;
   color: var(--gray);
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
 .offer-perks li {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
 }
 
 .offer-perks li .check {
@@ -1874,7 +1833,7 @@ section {
     padding: 24px 20px;
   }
 
-  .offer-price-block .total-price {
-    font-size: 2.1rem;
+  .offer-highlight-banner .main-offer-text {
+    font-size: 1.3rem;
   }
 }
