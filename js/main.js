@@ -1,7 +1,7 @@
 // ===== Navbar Scroll Effect =====
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
+  if (window.scrollY > 40) {
     navbar.classList.add('scrolled');
   } else {
     navbar.classList.remove('scrolled');
@@ -12,18 +12,20 @@ window.addEventListener('scroll', () => {
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navLinks.classList.toggle('active');
-});
-
-// Close menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navLinks.classList.remove('active');
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
   });
-});
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  });
+}
 
 // ===== Active Nav Link on Scroll =====
 const sections = document.querySelectorAll('section[id]');
@@ -63,7 +65,7 @@ if (backToTop) {
 // ===== Scroll Animations =====
 const fadeElements = document.querySelectorAll('.fade-in');
 const observerOptions = {
-  threshold: 0.12,
+  threshold: 0.1,
   rootMargin: '0px 0px -40px 0px'
 };
 
@@ -81,19 +83,20 @@ fadeElements.forEach(el => observer.observe(el));
 function animateCounters() {
   const counters = document.querySelectorAll('.stat-number');
   counters.forEach(counter => {
-    const target = parseInt(counter.getAttribute('data-count'));
+    const target = parseFloat(counter.getAttribute('data-count'));
     const suffix = counter.getAttribute('data-suffix') || '';
     const duration = 2000;
+    const isDecimal = String(target).includes('.');
     const step = target / (duration / 16);
     let current = 0;
 
     const updateCounter = () => {
       current += step;
       if (current < target) {
-        counter.textContent = Math.floor(current) + suffix;
+        counter.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
         requestAnimationFrame(updateCounter);
       } else {
-        counter.textContent = target + suffix;
+        counter.textContent = (isDecimal ? target.toFixed(1) : target) + suffix;
       }
     };
     updateCounter();
@@ -110,12 +113,12 @@ if (heroSection) {
         heroObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.25 });
 
   heroObserver.observe(heroSection);
 }
 
-// ===== Contact Form Submission =====
+// ===== Contact Form Handling & WhatsApp Redirect =====
 const contactForm = document.querySelector('.contact-form');
 const formStatus = document.querySelector('.form-status');
 
@@ -126,22 +129,37 @@ if (contactForm) {
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
 
-    submitBtn.innerHTML = 'Submitting...';
+    const name = contactForm.querySelector('#name').value.trim();
+    const phone = contactForm.querySelector('#phone').value.trim();
+    const interest = contactForm.querySelector('#interest').value;
+    const message = contactForm.querySelector('#message').value.trim();
+
+    submitBtn.innerHTML = 'Connecting to WhatsApp...';
     submitBtn.disabled = true;
 
-    // Simulate clean form submission
+    // Create WhatsApp text message
+    let waText = `Hi Power Fitness Gym! My name is ${name}. Phone: ${phone}.`;
+    if (interest) {
+      waText += ` I am interested in: ${interest}.`;
+    }
+    if (message) {
+      waText += ` Note: ${message}`;
+    }
+
+    const waUrl = `https://wa.me/919440687315?text=${encodeURIComponent(waText)}`;
+
     setTimeout(() => {
-      submitBtn.innerHTML = '✓ Submitted';
       if (formStatus) {
-        formStatus.textContent = 'Thank you! Your enquiry has been received. Our trainer team at Power Fitness Gym Medchal will call you shortly.';
+        formStatus.textContent = 'Opening WhatsApp with your enquiry details...';
         formStatus.className = 'form-status success';
       }
+      window.open(waUrl, '_blank');
       contactForm.reset();
 
       setTimeout(() => {
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
-      }, 3000);
+      }, 2500);
     }, 600);
   });
 }
