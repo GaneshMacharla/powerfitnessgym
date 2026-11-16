@@ -11,8 +11,11 @@
   --gray: #b0b0b0;
   --gray-dark: #2a2a3e;
   --accent: #00d4ff;
+  --gold: #ffb703;
+  --gold-glow: rgba(255, 183, 3, 0.35);
   --whatsapp-color: #25D366;
   --gradient-primary: linear-gradient(135deg, #ff4d00, #ff8c00);
+  --gradient-festive: linear-gradient(135deg, #ff4d00 0%, #ff0055 50%, #ffb703 100%);
   --gradient-dark: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%);
   --shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
   --shadow-glow: 0 0 30px rgba(255, 77, 0, 0.35);
@@ -83,6 +86,12 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(255, 77, 0, 0.3);
 }
 
+.section-badge.festive {
+  background: rgba(255, 183, 3, 0.15);
+  color: var(--gold);
+  border-color: rgba(255, 183, 3, 0.4);
+}
+
 .section-title {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 16px;
@@ -99,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--gray);
   font-size: 1.1rem;
   max-width: 680px;
-  margin: 0 auto 48px;
+  margin: 0 auto 40px;
 }
 
 section {
@@ -112,9 +121,9 @@ section {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 28px;
+  padding: 13px 26px;
   border-radius: 50px;
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   border: none;
@@ -132,6 +141,19 @@ section {
 .btn-primary:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 30px rgba(255, 77, 0, 0.6);
+  color: #fff;
+}
+
+.btn-festive {
+  background: var(--gradient-festive);
+  color: #ffffff;
+  box-shadow: 0 4px 25px rgba(255, 0, 85, 0.4);
+  font-weight: 700;
+}
+
+.btn-festive:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 35px rgba(255, 0, 85, 0.65);
   color: #fff;
 }
 
@@ -232,7 +254,7 @@ section {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 22px;
 }
 
 .nav-links a {
@@ -241,6 +263,11 @@ section {
   color: var(--gray);
   transition: var(--transition);
   position: relative;
+}
+
+.nav-links a.nav-offer-tag {
+  color: #ffb703;
+  font-weight: 700;
 }
 
 .nav-links a::after {
@@ -326,7 +353,27 @@ section {
   font-size: 0.85rem;
   color: var(--primary);
   font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.hero-festive-alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(90deg, rgba(255, 77, 0, 0.18), rgba(255, 183, 3, 0.18));
+  border: 1px solid rgba(255, 183, 3, 0.45);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  color: var(--gold);
+  font-weight: 700;
   margin-bottom: 20px;
+  animation: pulse-glow 2.5s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 183, 3, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(255, 183, 3, 0.5); }
 }
 
 .hero-location-tag {
@@ -500,7 +547,7 @@ section {
   50% { transform: translateY(-10px); }
 }
 
-/* ===== Experience Section (26+ Years) ===== */
+/* ===== 26+ Years Experience Section (Featuring Real Coach Photo) ===== */
 #experience {
   background: linear-gradient(180deg, var(--darker) 0%, #16162a 50%, var(--darker) 100%);
   position: relative;
@@ -518,48 +565,55 @@ section {
   pointer-events: none;
 }
 
-.experience-box {
+.experience-box-v2 {
   background: var(--card-bg);
   border: 1px solid rgba(255, 77, 0, 0.3);
   border-radius: 24px;
-  padding: 50px 45px;
+  padding: 45px;
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 50px;
+  grid-template-columns: 380px 1fr;
+  gap: 45px;
   align-items: center;
   box-shadow: var(--shadow-glow);
+}
+
+.coach-photo-wrapper {
   position: relative;
-}
-
-.experience-badge-large {
-  background: var(--gradient-primary);
   border-radius: 20px;
-  padding: 40px 24px;
+  overflow: hidden;
+  height: 460px;
+  border: 2px solid rgba(255, 77, 0, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.coach-photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.coach-badge-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(10, 10, 18, 0.95) 0%, rgba(10, 10, 18, 0.7) 60%, transparent 100%);
+  padding: 24px 20px 18px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(255, 77, 0, 0.45);
 }
 
-.experience-badge-large .number {
-  font-size: 4.5rem;
-  font-weight: 900;
-  line-height: 1;
-  color: #ffffff;
-}
-
-.experience-badge-large .label {
-  font-size: 1.15rem;
+.coach-badge-overlay .coach-name {
+  font-size: 1.3rem;
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #ffffff;
-  margin-top: 8px;
+  color: #fff;
 }
 
-.experience-badge-large .sublabel {
-  font-size: 0.85rem;
-  opacity: 0.9;
-  margin-top: 4px;
-  color: #fff;
+.coach-badge-overlay .coach-title {
+  color: var(--primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .experience-content h3 {
@@ -604,9 +658,273 @@ section {
   font-size: 1.2rem;
 }
 
+/* ===== Festival Offers & Pricing Section ===== */
+#offers {
+  background: var(--darker);
+  position: relative;
+  text-align: center;
+}
+
+.offer-banner-header {
+  background: linear-gradient(135deg, rgba(255, 77, 0, 0.15) 0%, rgba(255, 0, 85, 0.15) 50%, rgba(255, 183, 3, 0.15) 100%);
+  border: 2px dashed rgba(255, 183, 3, 0.5);
+  border-radius: 20px;
+  padding: 24px 30px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  text-align: left;
+}
+
+.offer-banner-header h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.offer-banner-header p {
+  color: var(--gray);
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+/* Category Tabs */
+.pricing-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--gray);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.tab-btn:hover {
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.tab-btn.active {
+  background: var(--gradient-primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 18px rgba(255, 77, 0, 0.4);
+}
+
+.tab-btn.active.festive-tab {
+  background: var(--gradient-festive);
+  border-color: #ff0055;
+  box-shadow: 0 4px 20px rgba(255, 0, 85, 0.45);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Offer Cards Grid */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.offer-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 34px 26px;
+  text-align: left;
+  transition: var(--transition);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.offer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
+}
+
+.offer-card.bumper {
+  border: 2px solid var(--gold);
+  background: linear-gradient(180deg, rgba(255, 183, 3, 0.08) 0%, var(--card-bg) 100%);
+  box-shadow: 0 8px 30px rgba(255, 183, 3, 0.25);
+}
+
+.offer-card.bumper::before {
+  content: '🔥 FESTIVAL BUMPER OFFER';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gradient-festive);
+  color: white;
+  padding: 5px 20px;
+  border-radius: 0 0 10px 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.offer-card.couples-card {
+  border-color: #ff0077;
+  background: linear-gradient(180deg, rgba(255, 0, 119, 0.08) 0%, var(--card-bg) 100%);
+}
+
+.offer-highlight-badge {
+  display: inline-block;
+  background: rgba(255, 77, 0, 0.15);
+  color: var(--primary);
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+
+.offer-highlight-badge.free-tag {
+  background: rgba(37, 211, 102, 0.18);
+  color: #25D366;
+  border: 1px solid rgba(37, 211, 102, 0.4);
+}
+
+.offer-card h3 {
+  font-size: 1.35rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.offer-price-block {
+  margin: 16px 0;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.offer-price-block .total-price {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+
+.offer-price-block .effective-rate {
+  font-size: 0.95rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.offer-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 0.92rem;
+  color: var(--gray);
+  margin-bottom: 24px;
+}
+
+.offer-perks li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.offer-perks li .check {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.offer-card .btn {
+  width: 100%;
+}
+
+/* Poster Showcase Banner */
+.poster-showcase-box {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  align-items: center;
+  text-align: left;
+}
+
+.poster-thumbnail {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.poster-info h4 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.poster-info p {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.amenities-pill-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.amenity-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.amenity-pill.steam {
+  background: rgba(0, 212, 255, 0.12);
+  border-color: rgba(0, 212, 255, 0.3);
+  color: var(--accent);
+}
+
 /* ===== Branches Section ===== */
 #branches {
-  background: var(--darker);
+  background: var(--gradient-dark);
   text-align: center;
 }
 
@@ -708,7 +1026,7 @@ section {
 
 /* ===== About Section ===== */
 #about {
-  background: var(--gradient-dark);
+  background: var(--darker);
 }
 
 .about-grid {
@@ -824,7 +1142,7 @@ section {
 
 /* ===== Services Section ===== */
 #services {
-  background: var(--darker);
+  background: var(--gradient-dark);
   text-align: center;
 }
 
@@ -893,112 +1211,6 @@ section {
   color: var(--gray);
   font-size: 0.95rem;
   line-height: 1.6;
-}
-
-/* ===== Pricing Section ===== */
-#pricing {
-  background: var(--gradient-dark);
-  text-align: center;
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  max-width: 1050px;
-  margin: 0 auto;
-}
-
-.pricing-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 20px;
-  padding: 42px 32px;
-  position: relative;
-  transition: var(--transition);
-}
-
-.pricing-card.featured {
-  border-color: var(--primary);
-  background: linear-gradient(180deg, rgba(255, 77, 0, 0.08) 0%, var(--card-bg) 100%);
-  transform: scale(1.04);
-  box-shadow: var(--shadow-glow);
-}
-
-.pricing-card.featured::before {
-  content: 'MOST POPULAR';
-  position: absolute;
-  top: -1px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--gradient-primary);
-  color: white;
-  padding: 6px 26px;
-  border-radius: 0 0 12px 12px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-}
-
-.pricing-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow);
-}
-
-.pricing-card.featured:hover {
-  transform: scale(1.04) translateY(-8px);
-}
-
-.pricing-card h3 {
-  font-size: 1.35rem;
-  margin-bottom: 8px;
-}
-
-.pricing-card .price {
-  font-size: 3rem;
-  font-weight: 800;
-  margin: 16px 0;
-}
-
-.pricing-card .price span {
-  font-size: 1rem;
-  color: var(--gray);
-  font-weight: 400;
-}
-
-.pricing-card .price .currency {
-  font-size: 1.6rem;
-  vertical-align: super;
-}
-
-.pricing-card .plan-desc {
-  color: var(--gray);
-  font-size: 0.9rem;
-  margin-bottom: 24px;
-}
-
-.pricing-card ul {
-  text-align: left;
-  margin-bottom: 32px;
-}
-
-.pricing-card ul li {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.95rem;
-  color: var(--gray);
-}
-
-.pricing-card ul li .check {
-  color: #4caf50;
-  font-weight: bold;
-}
-
-.pricing-card .btn {
-  width: 100%;
 }
 
 /* ===== Gallery Section ===== */
@@ -1153,62 +1365,9 @@ section {
   color: var(--gray);
 }
 
-/* ===== Schedule Section ===== */
-#schedule {
-  background: var(--darker);
-  text-align: center;
-}
-
-.schedule-table-wrapper {
-  overflow-x: auto;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: var(--card-bg);
-}
-
-.schedule-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 700px;
-}
-
-.schedule-table thead {
-  background: rgba(255, 77, 0, 0.12);
-}
-
-.schedule-table th {
-  padding: 18px 20px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--primary);
-  text-align: left;
-}
-
-.schedule-table td {
-  padding: 16px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  color: var(--gray);
-  font-size: 0.95rem;
-}
-
-.schedule-table tbody tr:hover {
-  background: rgba(255, 77, 0, 0.04);
-}
-
-.schedule-table .time-badge {
-  background: rgba(255, 77, 0, 0.12);
-  color: var(--primary);
-  padding: 4px 12px;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
 /* ===== Contact Section ===== */
 #contact {
-  background: var(--gradient-dark);
+  background: var(--darker);
 }
 
 .contact-grid {
@@ -1569,11 +1728,31 @@ section {
     margin-top: 20px;
   }
 
-  .experience-box {
+  .experience-box-v2 {
     grid-template-columns: 1fr;
     text-align: center;
     padding: 35px 25px;
     gap: 30px;
+  }
+
+  .coach-photo-wrapper {
+    max-width: 420px;
+    margin: 0 auto;
+    height: 380px;
+  }
+
+  .poster-showcase-box {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .poster-thumbnail {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .amenities-pill-row {
+    justify-content: center;
   }
 
   .about-grid {
@@ -1591,14 +1770,6 @@ section {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
-
-  .pricing-card.featured {
-    transform: none;
-  }
-
-  .pricing-card.featured:hover {
-    transform: translateY(-8px);
-  }
 }
 
 @media (max-width: 768px) {
@@ -1615,7 +1786,7 @@ section {
     background: var(--secondary);
     flex-direction: column;
     justify-content: center;
-    gap: 22px;
+    gap: 20px;
     transition: var(--transition);
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
     z-index: 1002;
@@ -1640,6 +1811,10 @@ section {
 
   .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .offers-grid {
+    grid-template-columns: 1fr;
   }
 
   .gallery-grid {
@@ -1695,15 +1870,11 @@ section {
     grid-template-columns: 1fr;
   }
 
-  .pricing-grid {
-    grid-template-columns: 1fr;
-  }
-
   .contact-form-wrapper {
     padding: 24px 20px;
   }
 
-  .experience-badge-large .number {
-    font-size: 3.5rem;
+  .offer-price-block .total-price {
+    font-size: 2.1rem;
   }
 }

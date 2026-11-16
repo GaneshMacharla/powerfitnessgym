@@ -27,6 +27,25 @@ if (hamburger && navLinks) {
   });
 }
 
+// ===== Category Tabs for Offers & Packages =====
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetTab = btn.getAttribute('data-tab');
+
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabContents.forEach(c => c.classList.remove('active'));
+
+    btn.classList.add('active');
+    const content = document.getElementById(targetTab);
+    if (content) {
+      content.classList.add('active');
+    }
+  });
+});
+
 // ===== Active Nav Link on Scroll =====
 const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
