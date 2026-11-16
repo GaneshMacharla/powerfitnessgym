@@ -1,10 +1,12 @@
-// ===== Navbar Scroll Effect =====
-const navbar = document.querySelector('.navbar');
+// ===== Header Scroll Effect =====
+const siteHeader = document.querySelector('.site-header');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 40) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
+  if (siteHeader) {
+    if (window.scrollY > 40) {
+      siteHeader.classList.add('scrolled');
+    } else {
+      siteHeader.classList.remove('scrolled');
+    }
   }
 });
 
@@ -27,25 +29,6 @@ if (hamburger && navLinks) {
   });
 }
 
-// ===== Category Tabs for Offers & Packages =====
-const tabBtns = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
-
-tabBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const targetTab = btn.getAttribute('data-tab');
-
-    tabBtns.forEach(b => b.classList.remove('active'));
-    tabContents.forEach(c => c.classList.remove('active'));
-
-    btn.classList.add('active');
-    const content = document.getElementById(targetTab);
-    if (content) {
-      content.classList.add('active');
-    }
-  });
-});
-
 // ===== Active Nav Link on Scroll =====
 const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
@@ -66,17 +49,17 @@ window.addEventListener('scroll', () => {
 });
 
 // ===== Back to Top Button =====
-const backToTop = document.querySelector('.back-to-top');
-if (backToTop) {
+const backToTopBtn = document.querySelector('.back-to-top-btn');
+if (backToTopBtn) {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 400) {
-      backToTop.classList.add('show');
+      backToTopBtn.classList.add('show');
     } else {
-      backToTop.classList.remove('show');
+      backToTopBtn.classList.remove('show');
     }
   });
 
-  backToTop.addEventListener('click', () => {
+  backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
@@ -157,7 +140,7 @@ if (contactForm) {
     submitBtn.disabled = true;
 
     // Create WhatsApp text message
-    let waText = `Hi Power Fitness Gym! My name is ${name}. Phone: ${phone}.`;
+    let waText = `Hi Power Fitness Gym! My name is ${name}. Mobile: ${phone}.`;
     if (interest) {
       waText += ` I am interested in: ${interest}.`;
     }
