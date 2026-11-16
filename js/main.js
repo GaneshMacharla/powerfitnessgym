@@ -30,7 +30,7 @@ const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
   const scrollY = window.pageYOffset;
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
+    const sectionTop = section.offsetTop - 120;
     const sectionHeight = section.offsetHeight;
     const sectionId = section.getAttribute('id');
     const link = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
@@ -46,23 +46,25 @@ window.addEventListener('scroll', () => {
 
 // ===== Back to Top Button =====
 const backToTop = document.querySelector('.back-to-top');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 500) {
-    backToTop.classList.add('show');
-  } else {
-    backToTop.classList.remove('show');
-  }
-});
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  });
 
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
 // ===== Scroll Animations =====
 const fadeElements = document.querySelectorAll('.fade-in');
 const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
+  threshold: 0.12,
+  rootMargin: '0px 0px -40px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -100,59 +102,60 @@ function animateCounters() {
 
 // Trigger counter animation when hero is visible
 const heroSection = document.querySelector('.hero');
-const heroObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounters();
-      heroObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.3 });
+if (heroSection) {
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        heroObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
 
-heroObserver.observe(heroSection);
+  heroObserver.observe(heroSection);
+}
 
-// ===== Form Submission =====
+// ===== Contact Form Submission =====
 const contactForm = document.querySelector('.contact-form');
+const formStatus = document.querySelector('.form-status');
+
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const phone = formData.get('phone');
-    const interest = formData.get('interest');
-    const message = formData.get('message');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
 
-    // Build WhatsApp message
-    let whatsappMessage = `Hi! I'm ${name}.`;
-    if (interest) whatsappMessage += ` I'm interested in ${interest}.`;
-    if (message) whatsappMessage += ` ${message}`;
-    whatsappMessage += ` My phone: ${phone}`;
+    submitBtn.innerHTML = 'Submitting...';
+    submitBtn.disabled = true;
 
-    const whatsappUrl = `https://wa.me/919XXXXXXXXX?text=${encodeURIComponent(whatsappMessage)}`;
-
-    // Show success state
-    const btn = contactForm.querySelector('.btn');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '✅ Redirecting to WhatsApp...';
-    btn.style.pointerEvents = 'none';
-
+    // Simulate clean form submission
     setTimeout(() => {
-      window.open(whatsappUrl, '_blank');
-      btn.innerHTML = originalText;
-      btn.style.pointerEvents = '';
+      submitBtn.innerHTML = '✓ Submitted';
+      if (formStatus) {
+        formStatus.textContent = 'Thank you! Your enquiry has been received. Our trainer team at Power Fitness Gym Medchal will call you shortly.';
+        formStatus.className = 'form-status success';
+      }
       contactForm.reset();
-    }, 1000);
+
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 3000);
+    }, 600);
   });
 }
 
-// ===== Smooth Scroll for all anchor links =====
+// ===== Smooth Scroll for anchor links =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const targetId = this.getAttribute('href');
+    if (targetId && targetId !== '#') {
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   });
 });
