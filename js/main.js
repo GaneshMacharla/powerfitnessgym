@@ -188,7 +188,7 @@ if (contactForm) {
 
 // 7. Scroll-reveal fade-in animation for section cards
 const fadeElements = document.querySelectorAll(
-  '.offer-card, .branch-card, .service-card, .gallery-card, .testimonial-card, .feature-box, .contact-item-row, .championship-featured-card, .championship-subcard, .video-reel-card'
+  '.offer-card, .branch-card, .service-card, .gallery-card, .equip-card, .testimonial-card, .feature-box, .contact-item-row, .championship-featured-card, .championship-subcard, .video-reel-card'
 );
 
 if ('IntersectionObserver' in window && fadeElements.length) {
