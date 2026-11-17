@@ -3846,3 +3846,105 @@ html {
     height: 34px;
   }
 }
+
+/* ----- Programs ----- */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.program-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 20px 22px;
+  border-radius: 18px;
+  border: 1px solid var(--border-subtle);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.012) 100%), var(--bg-card);
+  color: #fff;
+  text-align: left;
+  overflow: hidden;
+  min-width: 0;
+  transition: transform 0.45s var(--ease-out), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.program-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-primary);
+}
+
+.program-num {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 77, 0, 0.75);
+  margin-bottom: 14px;
+}
+
+.program-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+
+.program-card p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+
+.program-cta {
+  margin-top: auto;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+@media (hover: hover) {
+  .program-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 77, 0, 0.6);
+    box-shadow: var(--glow);
+    color: #fff;
+  }
+}
+
+@media (max-width: 1200px) {
+  .programs-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .program-card {
+    grid-column: span 2;
+  }
+
+  .program-card:nth-child(4),
+  .program-card:nth-child(5) {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .programs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .program-card,
+  .program-card:nth-child(4),
+  .program-card:nth-child(5) {
+    grid-column: auto;
+  }
+}
