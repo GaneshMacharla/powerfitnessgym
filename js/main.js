@@ -1,4 +1,4 @@
-// ===== Power Fitness Gym — Interactive JavaScript =====
+// ===== Power Fitness Gym — Interactive JavaScript v2.0 =====
 
 // 1. Header Sticky Scroll Effect
 const siteHeader = document.querySelector('.site-header');
@@ -21,6 +21,8 @@ if (navToggle && navLinks) {
     e.stopPropagation();
     navToggle.classList.toggle('active');
     navLinks.classList.toggle('active');
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
   });
 
   // Close menu when clicking a link
@@ -28,6 +30,7 @@ if (navToggle && navLinks) {
     link.addEventListener('click', () => {
       navToggle.classList.remove('active');
       navLinks.classList.remove('active');
+      document.body.style.overflow = '';
     });
   });
 
@@ -36,8 +39,33 @@ if (navToggle && navLinks) {
     if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
       navToggle.classList.remove('active');
       navLinks.classList.remove('active');
+      document.body.style.overflow = '';
     }
   });
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+      document.body.style.overflow = '';
+      navToggle.focus();
+    }
+  });
+
+  // Swipe-left to close mobile menu
+  let touchStartX = 0;
+  navLinks.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  navLinks.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (diff < -60) { // swipe right → close (since panel is on right)
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }, { passive: true });
 }
 
 // 3. Active Nav Link on Scroll
@@ -157,3 +185,36 @@ if (contactForm) {
     }, 800);
   });
 }
+
+// 7. Scroll-reveal fade-in animation for section cards
+const fadeElements = document.querySelectorAll(
+  '.offer-card, .branch-card, .service-card, .gallery-card, .testimonial-card, .feature-box, .contact-item-row'
+);
+
+if ('IntersectionObserver' in window && fadeElements.length) {
+  fadeElements.forEach(el => el.classList.add('fade-in'));
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  fadeElements.forEach(el => revealObserver.observe(el));
+}
+
+// 8. Dynamic hero padding on resize (accounts for variable header height)
+function adjustHeroPadding() {
+  const header = document.querySelector('.site-header');
+  const hero = document.querySelector('.hero');
+  if (header && hero) {
+    const headerH = header.offsetHeight;
+    hero.style.paddingTop = (headerH + 24) + 'px';
+  }
+}
+
+adjustHeroPadding();
+window.addEventListener('resize', adjustHeroPadding);

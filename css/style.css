@@ -1,5 +1,6 @@
 /* ==========================================================================
    POWER FITNESS GYM — MASTER RESPONSIVE STYLESHEET
+   v2.0 — Full Cross-Device Responsive Upgrade
    ========================================================================== */
 
 /* ===== 1. CSS Custom Properties ===== */
@@ -780,6 +781,12 @@ section {
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 18px;
+}
+
+.facility-cta-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .pill-item {
@@ -2243,5 +2250,258 @@ h1, h2, h3, h4, p, span, a, li {
 
   .announcement-text {
     font-size: 0.7rem;
+  }
+}
+
+/* ==========================================================================
+   20. EXTENDED RESPONSIVE FIXES — Gaps, Overflows & Touch Improvements
+   ========================================================================== */
+
+/* ── Prevent ALL horizontal overflow ── */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ── Buttons: prevent text overflow on tiny screens ── */
+.btn {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.4;
+  min-height: 44px; /* touch target */
+}
+
+/* ── Announcement bar: allow wrapping on very small screens ── */
+.announcement-left {
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* ── Hero float badges: cap width so they never bleed off-screen ── */
+.hero-float-badge {
+  max-width: calc(100vw - 40px);
+  box-sizing: border-box;
+}
+
+/* ── Images always fill containers cleanly ── */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Facility highlights responsive fix ── */
+@media (max-width: 768px) {
+  .facility-highlights-box {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .facility-highlights-info div[style] {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .facility-highlights-info .btn {
+    width: 100% !important;
+  }
+
+  .pills-row {
+    justify-content: center;
+  }
+}
+
+/* ── Experience section: hero-cta-group alignment fix on tablet ── */
+@media (max-width: 1024px) {
+  .experience-text-bay .hero-cta-group {
+    justify-content: center;
+  }
+
+  .exp-highlight-item {
+    justify-content: center;
+  }
+}
+
+/* ── Contact section: items list spacing ── */
+@media (max-width: 540px) {
+  .contact-item-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .contact-item-row .icon-box {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+}
+
+/* ── Footer: stagger 4-col into responsive grid ── */
+@media (max-width: 768px) and (min-width: 541px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+/* ── Offer header banner button text wrapping ── */
+@media (max-width: 540px) {
+  .offer-header-banner h3 {
+    font-size: 1.1rem;
+  }
+
+  .offer-header-banner p {
+    font-size: 0.84rem;
+  }
+}
+
+/* ── Branch cta-row: stack vertically on mobile ── */
+@media (max-width: 400px) {
+  .branch-cta-row {
+    flex-direction: column;
+  }
+
+  .branch-cta-row .btn {
+    width: 100%;
+  }
+}
+
+/* ── Nav toggle: increased touch target ── */
+.nav-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Map: prevent height from squishing on small phones ── */
+@media (max-width: 400px) {
+  .map-wrapper {
+    height: 220px;
+  }
+}
+
+/* ── Section padding: even tighter on very small phones ── */
+@media (max-width: 360px) {
+  section {
+    padding: 44px 0;
+  }
+
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 32px;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .stat-num {
+    font-size: 1.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .offers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .branches-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ── Smooth scroll offset: account for fixed header on anchor links ── */
+:target {
+  scroll-margin-top: 100px;
+}
+
+/* ── Scrolled header: compact on mobile ── */
+@media (max-width: 540px) {
+  .site-header.scrolled .top-announcement {
+    display: none;
+  }
+}
+
+/* ── Hero visual: float badges hidden on very small to avoid overlap ── */
+@media (max-width: 380px) {
+  .hero-float-badge {
+    display: none;
+  }
+}
+
+/* ── Testimonial card blockquote: limit length on tiny screens ── */
+@media (max-width: 360px) {
+  .testimonial-card blockquote {
+    font-size: 0.84rem;
+  }
+}
+
+/* ── Service card thumb height on ultra-small screens ── */
+@media (max-width: 360px) {
+  .service-thumb {
+    height: 150px;
+  }
+}
+
+/* ── WhatsApp tooltip: hide on touch devices (hover not reliable) ── */
+@media (hover: none) {
+  .whatsapp-tooltip {
+    display: none;
+  }
+}
+
+/* ── Accessibility: focus rings ── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* ── Print: hide non-essential elements ── */
+@media print {
+  .site-header,
+  .whatsapp-floating-widget,
+  .back-to-top,
+  .nav-toggle {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
   }
 }
