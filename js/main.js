@@ -242,3 +242,15 @@ if ('IntersectionObserver' in window && allVideos.length) {
 
   allVideos.forEach(v => videoObserver.observe(v));
 }
+
+// 10. Scroll progress bar under the header
+const scrollProgress = document.querySelector('.scroll-progress');
+if (scrollProgress) {
+  const updateProgress = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+}

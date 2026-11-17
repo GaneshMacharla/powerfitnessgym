@@ -15,7 +15,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
@@ -68,6 +68,7 @@
         </button>
       </div>
     </nav>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </header>
 
   <!-- ============================== HERO ============================== -->
@@ -140,6 +141,14 @@
       </div>
     </div>
   </section>
+
+  <!-- ============================== MARQUEE BAND ============================== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Strength</span><span>Powerlifting</span><span>Bodybuilding</span><span>Cardio</span><span>Zumba</span><span>Karate</span><span>Steam Bath</span><span>Open 24/7</span><span>26+ Years</span><span>WPC Telangana</span>
+      <span>Strength</span><span>Powerlifting</span><span>Bodybuilding</span><span>Cardio</span><span>Zumba</span><span>Karate</span><span>Steam Bath</span><span>Open 24/7</span><span>26+ Years</span><span>WPC Telangana</span>
+    </div>
+  </div>
 
   <!-- ============================== FESTIVAL OFFERS (ZERO HARDCODED RUPEES) ============================== -->
   <section id="offers">
@@ -659,17 +668,7 @@
       </div>
 
       <div class="gallery-grid">
-        <!-- 1. Cardio Zone & Reception with Hex Lights -->
-        <div class="gallery-card">
-          <img src="images/gym_cardio_overview.jpg" alt="Power Fitness Gym Medchal — Cardio Bay and Modern Lighting" />
-          <div class="gallery-caption">
-            <span class="gallery-tag">Cardio &amp; Reception</span>
-            <h4>Treadmills, Cross Trainers &amp; Hexagonal LEDs</h4>
-          </div>
-        </div>
-
-        <!-- 2. Plate-Loaded Machine Station -->
-        <div class="gallery-card">
+        <div class="gallery-card g-tall">
           <img src="images/gym_machine_station.jpg" alt="Power Fitness Gym — Fitline Plate-Loaded Strength Station" />
           <div class="gallery-caption">
             <span class="gallery-tag">Plate-Loaded Zone</span>
@@ -677,8 +676,7 @@
           </div>
         </div>
 
-        <!-- 3. Physique & Transformation Athletes -->
-        <div class="gallery-card">
+        <div class="gallery-card g-tall">
           <img src="images/gym_physique_posing.jpg" alt="Power Fitness Gym Athletes Flexing in Free Weights Zone" />
           <div class="gallery-caption">
             <span class="gallery-tag">Real Transformations</span>
@@ -686,8 +684,7 @@
           </div>
         </div>
 
-        <!-- 4. Member Warmup & Official Wall Banner -->
-        <div class="gallery-card">
+        <div class="gallery-card g-tall">
           <img src="images/gym_workout_stretch.jpg" alt="Member Stretching in Front of Power Fitness Gym Official Wall" />
           <div class="gallery-caption">
             <span class="gallery-tag">Warm-Up Arena</span>
@@ -695,25 +692,6 @@
           </div>
         </div>
 
-        <!-- 5. National Pride & Fitline Setup -->
-        <div class="gallery-card">
-          <img src="images/gym_flag_celebration.jpg" alt="Fitline Weights Decorated with Indian Tricolor and Traditional Gada" />
-          <div class="gallery-caption">
-            <span class="gallery-tag">Gym Heritage</span>
-            <h4>Patriotic Celebrations &amp; Traditional Mudgar</h4>
-          </div>
-        </div>
-
-        <!-- 6. Community & Birthday Celebration -->
-        <div class="gallery-card">
-          <img src="images/gym_community_celebration.jpg" alt="Power Fitness Gym Community Birthday Celebration" />
-          <div class="gallery-caption">
-            <span class="gallery-tag">Gym Family</span>
-            <h4>Brotherhood, Milestone Celebrations &amp; Culture</h4>
-          </div>
-        </div>
-
-        <!-- 7. Fitline Selectorized Strength Machines -->
         <div class="gallery-card">
           <img src="images/real_gym_machines.jpg" alt="Power Fitness Gym — Biomechanical Selectorized Stations" />
           <div class="gallery-caption">
@@ -722,7 +700,6 @@
           </div>
         </div>
 
-        <!-- 8. Free Weights & Olympic Dumbbell Bay -->
         <div class="gallery-card">
           <img src="images/real_gym_weights.jpg" alt="Power Fitness Gym — Dumbbell Bay &amp; Olympic Barbells" />
           <div class="gallery-caption">
@@ -731,7 +708,6 @@
           </div>
         </div>
 
-        <!-- 9. Dual Cable Crossover Station -->
         <div class="gallery-card">
           <img src="images/real_gym_cable.jpg" alt="Power Fitness Gym — Dual Adjustable Cable Crossover" />
           <div class="gallery-caption">
@@ -740,17 +716,15 @@
           </div>
         </div>
 
-        <!-- 10. Flag Hoisting -->
-        <div class="gallery-card">
-          <img src="images/gym_flag_hoist.jpg" alt="Indian Tricolor being hoisted on the Power Fitness Gym floor" />
+        <div class="gallery-card g-tall">
+          <img src="images/gym_flag_celebration.jpg" alt="Fitline Weights Decorated with Indian Tricolor and Traditional Gada" />
           <div class="gallery-caption">
-            <span class="gallery-tag">National Pride</span>
-            <h4>Flag Hoisting on the Gym Floor</h4>
+            <span class="gallery-tag">Gym Heritage</span>
+            <h4>Patriotic Celebrations &amp; Traditional Mudgar</h4>
           </div>
         </div>
 
-        <!-- 11. Coach at the Cable Station -->
-        <div class="gallery-card">
+        <div class="gallery-card g-tall">
           <img src="images/coach_cable_pose.jpg" alt="Coach Ganesh Macharla at the cable station and dumbbell racks" />
           <div class="gallery-caption">
             <span class="gallery-tag">Head Coach</span>
@@ -758,12 +732,35 @@
           </div>
         </div>
 
-        <!-- 12. Main Workout Floor -->
+        <div class="gallery-card g-tall">
+          <img src="images/gym_flag_hoist.jpg" alt="Indian Tricolor being hoisted on the Power Fitness Gym floor" />
+          <div class="gallery-caption">
+            <span class="gallery-tag">National Pride</span>
+            <h4>Flag Hoisting on the Gym Floor</h4>
+          </div>
+        </div>
+
         <div class="gallery-card">
           <img src="images/real_gym_floor.jpg" alt="Power Fitness Gym — Main Workout Floor" />
           <div class="gallery-caption">
             <span class="gallery-tag">Workout Floor</span>
             <h4>Open Training Floor &amp; Turf Lane</h4>
+          </div>
+        </div>
+
+        <div class="gallery-card g-wide">
+          <img src="images/gym_cardio_overview.jpg" alt="Power Fitness Gym Medchal — Cardio Bay and Modern Lighting" />
+          <div class="gallery-caption">
+            <span class="gallery-tag">Cardio &amp; Reception</span>
+            <h4>Treadmills, Cross Trainers &amp; Hexagonal LEDs</h4>
+          </div>
+        </div>
+
+        <div class="gallery-card g-wide">
+          <img src="images/gym_community_celebration.jpg" alt="Power Fitness Gym Community Birthday Celebration" />
+          <div class="gallery-caption">
+            <span class="gallery-tag">Gym Family</span>
+            <h4>Brotherhood, Milestone Celebrations &amp; Culture</h4>
           </div>
         </div>
       </div>
