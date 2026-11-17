@@ -3587,3 +3587,262 @@ h3 {
     font-size: 1.2rem;
   }
 }
+
+/* ----- Mobile parity & robustness ----- */
+/* Nothing may widen the page on phones (the slanted marquee is wider than the screen by design) */
+html {
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* Scroll-reveal only hides content once the script has confirmed it can reveal it again */
+.fade-in {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-ready .fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.reveal-ready .fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Older phone browsers without aspect-ratio would collapse the equipment cards */
+@supports not (aspect-ratio: 1 / 1) {
+  .equip-card {
+    height: 0;
+    padding-bottom: 133.33%;
+  }
+
+  .equip-card img {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+/* Show the festival poster on phones and tablets too */
+@media (max-width: 1024px) {
+  .facility-poster-thumb {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .facility-poster-thumb img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ----- Social links ----- */
+#social {
+  background: var(--bg-surface);
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid var(--border-subtle);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.012) 100%), var(--bg-card);
+  color: #fff;
+  text-align: left;
+  min-width: 0;
+  transition: transform 0.45s var(--ease-out), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.social-icon {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.social-ig .social-icon,
+.footer-social .social-ig {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-yt .social-icon,
+.footer-social .social-yt {
+  background: #ff0000;
+}
+
+.social-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.social-net {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.social-text strong {
+  font-size: 1rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  line-height: 1.25;
+}
+
+.social-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.social-arrow {
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+@media (hover: hover) {
+  .social-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 77, 0, 0.6);
+    box-shadow: var(--glow);
+    color: #fff;
+  }
+}
+
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.footer-social a svg {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-social a:hover {
+  transform: translateY(-3px);
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .social-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----- Branch Instagram link ----- */
+.branch-ig {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 9px 14px;
+  width: 100%;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(220, 39, 67, 0.45);
+  background: linear-gradient(90deg, rgba(240, 148, 51, 0.12), rgba(188, 24, 136, 0.12));
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.branch-ig:hover {
+  color: #fff;
+  border-color: #dc2743;
+  transform: translateY(-2px);
+}
+
+/* ----- Brand logo emblem ----- */
+.logo-box.logo-mark {
+  width: auto;
+  height: 40px;
+  padding: 0;
+  background: #2b323b;
+  overflow: hidden;
+  border: 1px solid rgba(212, 160, 23, 0.45);
+  box-shadow: 0 0 18px rgba(212, 160, 23, 0.28);
+}
+
+.logo-box.logo-mark img {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+/* Keep the header on one line now that the logo is wider */
+.logo {
+  flex-shrink: 0;
+}
+
+@media (min-width: 861px) {
+  .nav-links a {
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1280px) {
+  .nav-links {
+    gap: 14px;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+  }
+
+  .logo-text {
+    font-size: 1.05rem;
+  }
+
+  .logo-box.logo-mark {
+    height: 34px;
+  }
+}
+
+@media (max-width: 860px) {
+  .logo-box.logo-mark {
+    height: 34px;
+  }
+}

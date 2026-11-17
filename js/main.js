@@ -192,18 +192,34 @@ const fadeElements = document.querySelectorAll(
 );
 
 if ('IntersectionObserver' in window && fadeElements.length) {
+  const reveal = (el) => el.classList.add('visible');
   fadeElements.forEach(el => el.classList.add('fade-in'));
 
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+        reveal(entry.target);
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px 80px 0px' });
 
   fadeElements.forEach(el => revealObserver.observe(el));
+
+  // Content is only hidden from this point on, now that the observer is running
+  document.documentElement.classList.add('reveal-ready');
+
+  // Safety net: anything at or above the current scroll position must never stay hidden
+  const revealPassed = () => {
+    const limit = window.innerHeight + 80;
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(el => {
+      if (el.getBoundingClientRect().top < limit) reveal(el);
+    });
+  };
+  window.addEventListener('scroll', revealPassed, { passive: true });
+  window.addEventListener('resize', revealPassed);
+  window.addEventListener('load', revealPassed);
+  revealPassed();
 }
 
 // 8. Dynamic hero padding on resize (accounts for variable header height)
