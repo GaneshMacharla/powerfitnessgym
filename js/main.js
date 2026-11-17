@@ -188,7 +188,7 @@ if (contactForm) {
 
 // 7. Scroll-reveal fade-in animation for section cards
 const fadeElements = document.querySelectorAll(
-  '.offer-card, .branch-card, .service-card, .gallery-card, .testimonial-card, .feature-box, .contact-item-row'
+  '.offer-card, .branch-card, .service-card, .gallery-card, .testimonial-card, .feature-box, .contact-item-row, .championship-featured-card, .championship-subcard, .video-reel-card'
 );
 
 if ('IntersectionObserver' in window && fadeElements.length) {
@@ -218,3 +218,27 @@ function adjustHeroPadding() {
 
 adjustHeroPadding();
 window.addEventListener('resize', adjustHeroPadding);
+
+// 9. Video Reel Player Optimization (Pause other video on play, pause on scroll away)
+const allVideos = document.querySelectorAll('.video-container video');
+allVideos.forEach(vid => {
+  vid.addEventListener('play', () => {
+    allVideos.forEach(otherVid => {
+      if (otherVid !== vid && !otherVid.paused) {
+        otherVid.pause();
+      }
+    });
+  });
+});
+
+if ('IntersectionObserver' in window && allVideos.length) {
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting && !entry.target.paused) {
+        entry.target.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  allVideos.forEach(v => videoObserver.observe(v));
+}
